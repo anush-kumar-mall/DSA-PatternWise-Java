@@ -28,13 +28,13 @@ Each topic is separated into its own folder. Inside each folder, you'll find rel
 
 - [x] Arrays  
 - [x] Strings  
-- [ ] Linked Lists  
+- [x] Linked Lists  
 - [ ] Trees  
-- [ ] Graphs  
-- [ ] Stack & Queue  
+- [x] Graphs  
+- [x] Stack & Queue  
 - [ ] Recursion & Backtracking  
-- [ ] Searching & Sorting  
-- [ ] Hashing  
+- [x] Searching & Sorting  
+- [x] Hashing  
 - [ ] Dynamic Programming  
 - [ ] Sliding Window  
 - [ ] Greedy  
