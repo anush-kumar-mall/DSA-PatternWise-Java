@@ -1,56 +1,26 @@
-# DSA-Java-Solutions
+<h1 align="center">📘 DSA Java Solutions</h1>
 
-# DSA Java Solutions
-
-This repository contains Java solutions to various Data Structures and Algorithms (DSA) problems from platforms like **LeetCode**, **GeeksForGeeks**, and **CodeStudio**.
-
-## Why this repo?
-- Easy-to-understand Java code with clear comments
-- Structured by topic for quick navigation
-- Consistent practice and progress tracking
-- Helpful for interviews and coding rounds
+<p align="center">
+  A well-organized collection of <strong>Data Structures & Algorithms</strong> problems solved in <strong>Java</strong> 🚀 <br/>
+  Focused on <strong>LeetCode</strong> questions, categorized topic-wise for easy navigation and interview prep.
+</p>
 
 ---
 
-## Topics Covered
+## 🧠 About the Repository
 
-- [x] Arrays
-- [x] Strings
-- [x] Linked List
-- [x] Stack
-- [x] Queue
-- [x] Hash Tables
-- [x] Sorting Algorithms
-- [x] Searching Algorithms
-- [ ] Trees
-- [x] Graphs
-- [ ] Dynamic Programming
-- [ ] Bit Manipulation
-- [ ] Greedy Algorithms
+This repository contains Java solutions to popular DSA problems, primarily from **LeetCode**. It's built to help with:
+
+- 🚀 Strengthening problem-solving skills
+- 💼 Cracking coding interviews
+- 🧩 Understanding core DSA concepts
+- ✅ Practicing clean Java implementations
+
+More problems and topics will be added **regularly**, so make sure to **🌟 star** the repo to stay updated!
 
 ---
 
-## Folder Format
+## 📂 Folder Structure
 
-Each topic folder contains:
-- `ProblemName.java` – With detailed comments and clean logic
-- Time and space complexity
-- Sometimes multiple approaches if applicable
+Each topic is separated into its own folder. Inside each folder, you'll find relevant Java solutions.
 
----
-
-## Example
-
-**File: `Arrays/TwoSum.java`**
-
-```java
-// Problem: Two Sum (LeetCode #1)
-// Approach: HashMap
-// Time Complexity: O(n)
-// Space Complexity: O(n)
-
-class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        // explanation comments
-    }
-}
