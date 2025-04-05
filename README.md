@@ -53,3 +53,15 @@ Each topic is separated into its own folder. Inside each folder, you'll find rel
 - 🧪 **Explanations:** Code-only (no written explanations for now)
 
 ---
+
+## 🌟 Show Your Support
+
+If this repository helped you, give it a ⭐ and share it with others!
+
+## 📞 Connect with Me
+
+- 🧑‍💻 [GitHub](https://github.com/anushkumarmall)
+- 💼 [LinkedIn](https://www.linkedin.com/in/anushkumarmall/) *(add if available)*
+- 📬 Email: anushkumarmall@example.com *(if you’re okay sharing)*
+
+
