@@ -62,9 +62,10 @@ If this repository helped you, give it a ⭐ and share it with others!
 
 ## 📞 Connect with Me
 
-- 🧑‍💻 [GitHub](https://github.com/anushkumar13)
-- 💼 [LinkedIn](www.linkedin.com/in/anush-kumar-mall) 
-- 📸 [Instagram](https://www.instagram.com/anushkumar13?igsh=NWc5a3VwbHN3bzZ0)
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/anush-kumar-mall)
+[![Instagram](https://img.shields.io/badge/-Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/anushkumar13?igsh=NWc5a3VwbHN3bzZ0/)
 - 📬 Email: kumarmallanush@gmail.com
+
+
 
 
