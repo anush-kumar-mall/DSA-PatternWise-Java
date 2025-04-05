@@ -19,11 +19,13 @@ This repository contains Java solutions to various Data Structures and Algorithm
 - [x] Linked List
 - [x] Stack
 - [x] Queue
-- [x] Trees
+- [x] Hash Tables
+- [x] Sorting Algorithms
+- [x] Searching Algorithms
+- [ ] Trees
 - [x] Graphs
-- [x] Dynamic Programming
+- [ ] Dynamic Programming
 - [ ] Bit Manipulation
-- [ ] Sliding Window
 - [ ] Greedy Algorithms
 
 ---
