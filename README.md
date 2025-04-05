@@ -26,12 +26,9 @@ Each topic is separated into its own folder. Inside each folder, you'll find rel
 
 ## 📚 Topics Covered
 
-- [x] Arrays  
-- [x] Strings  
-- [x] Linked Lists  
-- [x] Stack & Queue  
-- [x] Searching & Sorting  
-- [x] Hashing  
+- [x] Array  
+- [x] Stack   
+- [x] Tree  
 - [x] Graphs 
 
 > 🚀 More exciting topics and tricky problems coming your way — stay tuned and keep coding!
