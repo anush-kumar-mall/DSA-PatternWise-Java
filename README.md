@@ -24,3 +24,32 @@ More problems and topics will be added **regularly**, so make sure to **🌟 sta
 
 Each topic is separated into its own folder. Inside each folder, you'll find relevant Java solutions.
 
+## 📚 Topics Covered
+
+- [x] Arrays  
+- [x] Strings  
+- [ ] Linked Lists  
+- [ ] Trees  
+- [ ] Graphs  
+- [ ] Stack & Queue  
+- [ ] Recursion & Backtracking  
+- [ ] Searching & Sorting  
+- [ ] Hashing  
+- [ ] Dynamic Programming  
+- [ ] Sliding Window  
+- [ ] Greedy  
+- [ ] Bit Manipulation  
+- [ ] Miscellaneous
+
+> 🛠️ More topics coming soon...
+
+---
+
+## ⚙️ Tech Stack
+
+- 💻 **Language:** Java (only)
+- 🧩 **Platform:** LeetCode
+- 📁 **Structure:** Topic-wise folders
+- 🧪 **Explanations:** Code-only (no written explanations for now)
+
+---
