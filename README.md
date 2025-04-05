@@ -11,7 +11,7 @@
 
 This repository contains Java solutions to popular DSA problems, primarily from **LeetCode**. It's built to help with:
 
-- 🚀 Strengthening problem-solving skills
+- 💪 Strengthening problem-solving skills
 - 💼 Cracking coding interviews
 - 🧩 Understanding core DSA concepts
 - ✅ Practicing clean Java implementations
@@ -33,7 +33,7 @@ Each topic is separated into its own folder. Inside each folder, you'll find rel
 - [x] Tree  
 - [x] Graphs 
 
-> 🚀 More exciting topics and tricky problems coming your way — stay tuned and keep coding!
+> 🚨 More exciting topics and tricky problems coming your way — stay tuned and keep coding!
 
 ---
 
@@ -57,6 +57,6 @@ If this repository helped you, give it a ⭐ and share it with others!
 
 - 💼 [LinkedIn](www.linkedin.com/in/anush-kumar-mall) 
 - 📸 [Instagram](https://www.instagram.com/anushkumar13?igsh=NWc5a3VwbHN3bzZ0)
-- 📬 Email: mallanushkumar@gmail.com
+- ✉️ Email: mallanushkumar@gmail.com
 
 
