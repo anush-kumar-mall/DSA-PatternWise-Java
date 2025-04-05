@@ -28,11 +28,11 @@ Each topic is separated into its own folder. Inside each folder, you'll find rel
 
 - [x] Arrays  
 - [x] Strings  
-- [x] Linked Lists 
-- [x] Graphs  
+- [x] Linked Lists  
 - [x] Stack & Queue  
 - [x] Searching & Sorting  
 - [x] Hashing  
+- [x] Graphs 
 - [ ] Trees  
 - [ ] Recursion & Backtracking   
 - [ ] Dynamic Programming  
@@ -64,6 +64,7 @@ If this repository helped you, give it a ⭐ and share it with others!
 
 - 🧑‍💻 [GitHub](https://github.com/anushkumar13)
 - 💼 [LinkedIn](www.linkedin.com/in/anush-kumar-mall) 
+- 📸 [Instagram](https://www.instagram.com/anushkumar13?igsh=NWc5a3VwbHN3bzZ0)
 - 📬 Email: kumarmallanush@gmail.com
 
 
