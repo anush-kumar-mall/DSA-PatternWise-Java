@@ -58,10 +58,12 @@ Each topic is separated into its own folder. Inside each folder, you'll find rel
 
 If this repository helped you, give it a ⭐ and share it with others!
 
+---
+
 ## 📞 Connect with Me
 
-- 🧑‍💻 [GitHub](https://github.com/anushkumarmall)
-- 💼 [LinkedIn](https://www.linkedin.com/in/anushkumarmall/) *(add if available)*
-- 📬 Email: anushkumarmall@example.com *(if you’re okay sharing)*
+- 🧑‍💻 [GitHub](https://github.com/anushkumar13)
+- 💼 [LinkedIn](www.linkedin.com/in/anush-kumar-mall) 
+- 📬 Email: kumarmallanush@gmail.com
 
 
