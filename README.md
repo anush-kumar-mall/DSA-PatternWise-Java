@@ -33,15 +33,8 @@ Each topic is separated into its own folder. Inside each folder, you'll find rel
 - [x] Searching & Sorting  
 - [x] Hashing  
 - [x] Graphs 
-- [ ] Trees  
-- [ ] Recursion & Backtracking   
-- [ ] Dynamic Programming  
-- [ ] Sliding Window  
-- [ ] Greedy  
-- [ ] Bit Manipulation  
-- [ ] Miscellaneous
 
-> 🛠️ More topics coming soon...
+> 🚀 More exciting topics and tricky problems coming your way — stay tuned and keep coding!
 
 ---
 
