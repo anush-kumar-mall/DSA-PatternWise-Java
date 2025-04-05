@@ -24,6 +24,8 @@ More problems and topics will be added **regularly**, so make sure to **🌟 sta
 
 Each topic is separated into its own folder. Inside each folder, you'll find relevant Java solutions.
 
+---
+
 ## 📚 Topics Covered
 
 - [x] Array  
