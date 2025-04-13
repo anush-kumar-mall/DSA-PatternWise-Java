@@ -32,6 +32,7 @@ Each topic is separated into its own folder. Inside each folder, you'll find rel
 - [x] Stack   
 - [x] Tree  
 - [x] Graphs 
+- [x] Recursion
 
 > 🚨 More exciting topics and tricky problems coming your way — stay tuned and keep coding!
 
