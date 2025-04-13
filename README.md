@@ -40,7 +40,7 @@ Each topic is separated into its own folder. Inside each folder, you'll find rel
 ## ⚙️ Tech Stack
 
 - 💻 **Language:** Java (only)
-- 🧩 **Platform:** LeetCode
+- 🧩 **Platform:** LeetCode and GeeksforGeeks
 - 📁 **Structure:** Topic-wise folders
 - 🧪 **Explanations:** Code-only (no written explanations for now)
 
