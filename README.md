@@ -31,12 +31,12 @@ Inside every folder, problems are categorized **pattern-wise** (e.g., Sliding Wi
 
 ## 📚 Topics Covered
 
-- [x] Array (Two Pointers, Sliding Window, Prefix Sum, etc.)  
-- [x] Stack (Monotonic Stack, Next Greater Element)  
-- [x] Tree (DFS, BFS, Recursion Patterns)  
-- [x] Graphs (BFS, DFS, Union-Find, Topo Sort)  
+- [x] Array 
+- [x] Stack   
+- [x] Tree   
+- [x] Graphs   
 - [x] Recursion & Backtracking  
-- [x] Dynamic Programming (Memoization & Tabulation)
+- [x] Dynamic Programming 
 
 > 🔍 More topics and pattern-based solutions coming soon — stay tuned!
 
