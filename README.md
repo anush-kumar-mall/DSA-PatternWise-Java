@@ -1,4 +1,4 @@
-<h1 align="center">📘 DSA Java Solutions</h1>
+<h1 align="center">📘 DSA-PatternWise-Java</h1>
 
 <p align="center">
   A well-structured collection of <strong>Data Structures & Algorithms</strong> problems solved in <strong>Java</strong> 🚀<br/>
