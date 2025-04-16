@@ -1,4 +1,3 @@
-import java.util.*;
 
 
 // ✅ Problem: Redundant Connection (LeetCode #684)
