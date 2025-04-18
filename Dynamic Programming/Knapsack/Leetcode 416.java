@@ -62,7 +62,7 @@ class Solution {
         List<Integer> nums = new ArrayList<>();
         for (int num : numsArr) nums.add(num);
 
-        int n = nums.size();
+        
         int S = 0;
 
         // Total sum calculate kar liya
