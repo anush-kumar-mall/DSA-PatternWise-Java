@@ -105,6 +105,4 @@ So, if `(sum - k)` is in the map, it means we’ve seen a prefix sum earlier tha
 **One-Line Summary**
 Count subarrays with sum `k` by tracking prefix sums and how many times each sum has been seen.
 
-```
-
 ---
