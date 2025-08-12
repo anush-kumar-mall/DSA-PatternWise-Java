@@ -38,7 +38,14 @@ Inside every folder, problems are categorized **pattern-wise** (e.g., Sliding Wi
 - [x] Recursion & Backtracking  
 - [x] Dynamic Programming 
 
->  More topics and pattern-based solutions coming soon — stay tuned!
+---
+
+## 📊 Patterns Covered
+
+- [x] Prefix Sum 
+- [] ... 
+ 
+ >  More topics and pattern-based solutions coming soon — stay tuned!
 
 ---
 
@@ -61,7 +68,7 @@ Your support motivates consistent updates and improvements.
 ##  Connect with Me
 
 - 💼 [LinkedIn](https://www.linkedin.com/in/anush-kumar-mall)  
-- 📸 [Instagram](https://www.instagram.com/anushkumar13?igsh=NWc5a3VwbHN3bzZ0)  
+- 📸 [Instagram](https://www.instagram.com/anush.kumar.mall?igsh=NWc5a3VwbHN3bzZ0)  
 - ✉️ Email: mallanushkumar@gmail.com
 
 ---
