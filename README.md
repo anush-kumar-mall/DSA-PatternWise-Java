@@ -43,7 +43,7 @@ Inside every folder, problems are categorized **pattern-wise** (e.g., Sliding Wi
 ## 📊 Patterns Covered
 
 - [x] Prefix Sum 
-- [] ... 
+- ........ 
  
  >  More topics and pattern-based solutions coming soon — stay tuned!
 
