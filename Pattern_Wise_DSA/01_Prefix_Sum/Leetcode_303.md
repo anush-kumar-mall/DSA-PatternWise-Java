@@ -1,4 +1,5 @@
 
+
 # LeetCode 303 - [Range Sum Query - Immutable](https://leetcode.com/problems/range-sum-query-immutable/)
 
 ---
@@ -6,35 +7,35 @@
 ## Problem Statement (In Short)
 
 You are given an integer array `nums`. Implement a data structure that supports the query:
-`sumRange(left, right)` → returns the sum of the elements between indices `left` and `right` (inclusive).
+`sumRange(left, right)` → returns the sum of elements between indices `left` and `right` (inclusive).
 
-You have to make multiple queries, so the solution should be efficient.
+We will have to answer multiple queries, so it should be efficient.
 
 ---
 
 ## Brute Force Approach
 
 **Idea**
-For every `sumRange(left, right)` call, loop through the array from `left` to `right` and add up the elements.
+For every query `sumRange(left, right)`, simply loop from `left` to `right` and add up the numbers.
 
 **Steps**
 
-1. Keep the array as-is.
-2. On each query, iterate from `left` to `right` and calculate the sum.
+1. Store the array as it is.
+2. For each query, iterate from `left` to `right` and sum the elements.
 
 **Time Complexity**: `O(N)` per query
 **Space Complexity**: `O(1)`
 
 **Drawback**
-For large arrays and many queries, this becomes very slow because we repeat the sum calculation every time.
+If the array is large and queries are many, this is very slow because we recalculate sums repeatedly.
 
 ---
 
-## Optimal Approach (Prefix Sum Precomputation)
+## Optimal Approach — Prefix Sum Precomputation
 
 **Idea**
-Precompute a prefix sum array where `prefix[i]` stores the sum of elements from index `0` to `i`.
-This way, any range sum can be computed in `O(1)` time.
+Make a `prefix[]` array where each index stores the sum of elements from `0` up to that index.
+Once this is built, any range sum can be found in **O(1)** time.
 
 ---
 
@@ -44,7 +45,7 @@ This way, any range sum can be computed in `O(1)` time.
 class NumArray {
     private int[] prefix;
 
-    // Constructor - Precompute prefix sums
+    // Constructor - Build prefix sum array
     public NumArray(int[] nums) {
         int sz = nums.length;
         prefix = new int[sz];
@@ -56,7 +57,7 @@ class NumArray {
         }
     }
 
-    // Query sum of range [left, right]
+    // Return sum from index left to right
     public int sumRange(int left, int right) {
         if (left == 0) return prefix[right];
         return prefix[right] - prefix[left - 1];
@@ -68,50 +69,111 @@ class NumArray {
 
 ## Logic Breakdown
 
-**Step 1: Precompute Prefix Sums**
-We build `prefix[i]` such that:
+### Step 1 — Precompute Prefix Sums
+
+We define:
 
 ```
 prefix[i] = nums[0] + nums[1] + ... + nums[i]
 ```
 
-**Step 2: Query in O(1)**
-To find `sumRange(left, right)`:
+### Step 2 — Answer Queries in O(1)
 
-* If `left == 0`, the answer is simply `prefix[right]`.
-* Otherwise:
+To get `sumRange(left, right)`:
+
+* If `left == 0` → directly return `prefix[right]`
+* Else → subtract the sum before `left`:
 
 ```
-sum = prefix[right] - prefix[left - 1]
+sumRange = prefix[right] - prefix[left - 1]
 ```
 
-This works because `prefix[right]` includes the sum from index `0` to `right`,
-and subtracting `prefix[left - 1]` removes the sum before `left`.
+---
+
+## Dry Run Example
+
+**Input**
+
+```java
+nums = [-2, 0, 3, -5, 2, -1]
+Queries:
+sumRange(0, 2)
+sumRange(2, 5)
+sumRange(0, 5)
+```
+
+---
+
+### Step 1 — Building `prefix[]`
+
+`sum = 0` initially
+
+| i | nums\[i] | sum after adding nums\[i] | prefix\[i] |
+| - | -------- | ------------------------- | ---------- |
+| 0 | -2       | -2                        | -2         |
+| 1 | 0        | -2                        | -2         |
+| 2 | 3        | 1                         | 1          |
+| 3 | -5       | -4                        | -4         |
+| 4 | 2        | -2                        | -2         |
+| 5 | -1       | -3                        | -3         |
+
+**Final prefix array:**
+
+```
+prefix = [-2, -2, 1, -4, -2, -3]
+```
+
+---
+
+### Step 2 — Processing Queries
+
+#### Query 1: sumRange(0, 2)
+
+* `left == 0` → return `prefix[2]`
+* `prefix[2] = 1`
+  **Answer:** 1
+  (Explanation: -2 + 0 + 3 = 1)
+
+---
+
+#### Query 2: sumRange(2, 5)
+
+* `left != 0` → return `prefix[5] - prefix[1]`
+* `prefix[5] = -3`, `prefix[1] = -2`
+* Calculation: `-3 - (-2) = -3 + 2 = -1`
+  **Answer:** -1
+  (Explanation: 3 + (-5) + 2 + (-1) = -1)
+
+---
+
+#### Query 3: sumRange(0, 5)
+
+* `left == 0` → return `prefix[5]`
+* `prefix[5] = -3`
+  **Answer:** -3
+  (Explanation: -2 + 0 + 3 + (-5) + 2 + (-1) = -3)
 
 ---
 
 ## Why This Works
 
-Mathematically:
-
-```
-sumRange(left, right) = prefix[right] - prefix[left - 1]
-```
-
-This gives the sum of elements from `left` to `right` directly without looping.
-Since prefix sums are computed once in the constructor, each query is constant time.
+Because the prefix sum array already holds cumulative totals, subtracting `prefix[left-1]` from `prefix[right]` removes the sum of numbers before `left`.
+This way, each query takes constant time, no matter how large the range is.
 
 ---
 
 ## Time & Space Complexity
 
-* **Time**:
+* **Time Complexity**
 
-  * Preprocessing: `O(N)`
-  * Query: `O(1)`
-* **Space**: `O(N)` — for the prefix array.
+  * Prefix build: `O(N)`
+  * Each query: `O(1)`
+
+* **Space Complexity**: `O(N)` (for storing prefix sums)
 
 ---
 
-**One-Line Summary**
-Precompute cumulative sums so each range sum query is answered in constant time.
+**One-Line Summary:**
+Build a prefix sum array once, then answer each range sum query in constant time without looping.
+
+---

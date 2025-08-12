@@ -74,9 +74,9 @@ class Solution {
 ## Logic Breakdown
 
 **Step 1: Maintain a Running Sum**
-As we go through the array, keep adding each number to `sum`.
+Keep adding each number to `sum` as we iterate.
 
-**Step 2: Use Remainders Instead of Raw Sums**
+**Step 2: Focus on Remainders Instead of Raw Sums**
 If two prefix sums have the same remainder when divided by `k`, the subarray between them has a sum divisible by `k`.
 
 **Step 3: Store Remainder Frequencies in a HashMap**
@@ -86,35 +86,60 @@ The map stores:
 remainder → how many times it has appeared
 ```
 
-When we encounter the same remainder again, it means there are `map.get(remainder)` previous positions where a subarray can start and be divisible by `k`.
+If we encounter the same remainder again, there are `map.get(remainder)` valid subarrays ending here.
 
 ---
 
 ### Why This Works
 
 Let `sum(i)` be the prefix sum up to index `i`.
-The sum of subarray from index `j+1` to `i` is:
+For a subarray `j+1` to `i`:
 
 ```
 sum(i) - sum(j)
 ```
 
-If both `sum(i)` and `sum(j)` give the same remainder when divided by `k`, then:
+If both give the same remainder modulo `k`, then:
 
 ```
 (sum(i) - sum(j)) % k == 0
 ```
 
-That subarray is divisible by `k`.
+That means the subarray sum is divisible by `k`.
+
+---
+
+## Dry Run Example
+
+**Input:**
+
+```
+nums = [4, 5, 0, -2, -3, 1], k = 5
+```
+
+| Step | num | sum | remainder | remainder after normalization | map before      | count before | Found? | count after | map after       |
+| ---- | --- | --- | --------- | ----------------------------- | --------------- | ------------ | ------ | ----------- | --------------- |
+| Init | -   | 0   | -         | -                             | {0=1}           | 0            | -      | 0           | {0=1}           |
+| 1    | 4   | 4   | 4         | 4                             | {0=1}           | 0            | No     | 0           | {0=1, 4=1}      |
+| 2    | 5   | 9   | 4         | 4                             | {0=1, 4=1}      | 0            | Yes(1) | 1           | {0=1, 4=2}      |
+| 3    | 0   | 9   | 4         | 4                             | {0=1, 4=2}      | 1            | Yes(2) | 3           | {0=1, 4=3}      |
+| 4    | -2  | 7   | 2         | 2                             | {0=1, 4=3}      | 3            | No     | 3           | {0=1, 4=3, 2=1} |
+| 5    | -3  | 4   | 4         | 4                             | {0=1, 4=3, 2=1} | 3            | Yes(3) | 6           | {0=1, 4=4, 2=1} |
+| 6    | 1   | 5   | 0         | 0                             | {0=1, 4=4, 2=1} | 6            | Yes(1) | 7           | {0=2, 4=4, 2=1} |
+
+**Final `count` = 7**
 
 ---
 
 ### Time & Space Complexity
 
-* **Time**: `O(N)` — Single pass over the array.
-* **Space**: `O(N)` — To store remainder frequencies.
+* **Time**: `O(N)` — Single pass.
+* **Space**: `O(N)` — HashMap for remainder frequencies.
 
 ---
 
 **One-Line Summary**
-Count subarrays divisible by `k` by tracking prefix sums’ remainders and how many times each remainder has been seen.
+Track prefix sums’ remainders and their frequencies. Matching remainders = valid subarrays divisible by `k`.
+
+---
+

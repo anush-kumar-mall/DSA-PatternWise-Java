@@ -1,30 +1,30 @@
 
-
 # LeetCode 560 - [Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/)
 
 ---
 
 ## Problem Statement (In Short)
 
-You are given an integer array `nums` and an integer `k`.  
+You are given an integer array `nums` and an integer `k`.
 Return the **total number of continuous subarrays** whose sum equals `k`.
 
 ---
 
 ## Brute Force Approach
 
-**Idea**  
+**Idea**
 Check every possible subarray, calculate its sum, and count the ones equal to `k`.
 
 **Steps**
+
 1. Use two nested loops to generate all subarrays.
 2. For each subarray, sum its elements.
 3. If the sum equals `k`, increment the counter.
 
-**Time Complexity**: `O(N^2)`  
+**Time Complexity**: `O(N^2)`
 **Space Complexity**: `O(1)`
 
-**Drawback**  
+**Drawback**
 Recomputing sums for each subarray makes it slow for large inputs.
 
 ---
@@ -59,7 +59,7 @@ class Solution {
         return count;
     }
 }
-````
+```
 
 ---
 
@@ -70,7 +70,10 @@ As we iterate, keep adding numbers to `sum` (the cumulative sum from start to th
 
 **Step 2: Store Prefix Sums in a HashMap**
 The map stores:
-`prefixSum → frequency`
+
+```
+prefixSum → frequency
+```
 
 If `(sum - k)` exists in the map, it means there’s a subarray ending at the current index whose sum is exactly `k`.
 
@@ -95,6 +98,31 @@ So, if `(sum - k)` is in the map, it means we’ve seen a prefix sum earlier tha
 
 ---
 
+## Dry Run Example
+
+**Input:**
+
+```
+nums = [1, 2, 3], k = 3
+```
+
+| Step | num | sum | sum-k | map (prefixSum → freq)   | count |
+| ---- | --- | --- | ----- | ------------------------ | ----- |
+| Init | -   | 0   | -     | {0: 1}                   | 0     |
+| 1    | 1   | 1   | -2    | {0: 1, 1: 1}             | 0     |
+| 2    | 2   | 3   | 0     | {0: 1, 1: 1, 3: 1}       | 1     |
+| 3    | 3   | 6   | 3     | {0: 1, 1: 1, 3: 1, 6: 1} | 2     |
+
+**Explanation:**
+
+1. After adding `1`, `sum = 1`. `sum - k = -2` not in map → no new subarray.
+2. After adding `2`, `sum = 3`. `sum - k = 0` is in map (freq = 1) → found 1 subarray: `[1, 2]`.
+3. After adding `3`, `sum = 6`. `sum - k = 3` is in map (freq = 1) → found 1 subarray: `[3]`.
+
+**Total Count = 2**.
+
+---
+
 ### Time & Space Complexity
 
 * **Time**: `O(N)` — Single pass through the array.
@@ -103,6 +131,6 @@ So, if `(sum - k)` is in the map, it means we’ve seen a prefix sum earlier tha
 ---
 
 **One-Line Summary**
-Count subarrays with sum `k` by tracking prefix sums and how many times each sum has been seen.
+Track prefix sums in a map. If `(currentSum - k)` was seen before, those starting points form subarrays ending here with sum `k`.
 
 ---

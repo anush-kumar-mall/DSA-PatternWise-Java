@@ -1,35 +1,38 @@
 
+
 # LeetCode 523 - [Continuous Subarray Sum](https://leetcode.com/problems/continuous-subarray-sum/)
 
 ---
 
 ## Problem Statement (In Short)
 
-Given an integer array `nums` and an integer `k`, check if the array has a **continuous subarray** of size at least 2 whose sum is a multiple of `k`.
+You are given an integer array `nums` and an integer `k`.
+Check if the array contains a **continuous subarray** of length **at least 2** whose sum is a multiple of `k`.
 
-Return **true** if such a subarray exists, otherwise **false**.
+Return `true` if it exists, else `false`.
 
 ---
 
 ## Brute Force Approach
 
-**Idea**  
-Check every subarray of length ≥ 2, calculate the sum, and see if it’s divisible by `k`.
+**Idea**
+Try all possible subarrays of length ≥ 2, calculate sum, check if divisible by `k`.
 
 **Steps**
-1. Use two nested loops to generate all subarrays with length ≥ 2.
-2. For each subarray, find the sum.
+
+1. Generate all subarrays of length ≥ 2.
+2. Calculate the sum for each.
 3. If `sum % k == 0`, return true.
 
-**Time Complexity**: `O(N^2)`  
+**Time Complexity**: `O(N^2)`
 **Space Complexity**: `O(1)`
 
-**Drawback**  
-Too slow for large arrays because we keep recalculating sums.
+**Drawback**
+Too slow for large arrays — recalculates sums repeatedly.
 
 ---
 
-## Optimal Approach (Prefix Sum + Remainder Map)
+## Optimal Approach — Prefix Sum + Remainder Map
 
 ### Java Code
 
@@ -50,19 +53,18 @@ class Solution {
 
             int remainder = sum % k;
 
-            // Handle negative remainders
+            // Handle negative remainders (Java mod can be negative)
             if (remainder < 0) {
                 remainder += k;
             }
 
-            // If we've seen this remainder before
             if (map.containsKey(remainder)) {
-                // Check if subarray length is at least 2
+                // Subarray length must be at least 2
                 if (i - map.get(remainder) >= 2) {
                     return true;
                 }
             } else {
-                // Store first occurrence of remainder
+                // Store first occurrence of this remainder
                 map.put(remainder, i);
             }
         }
@@ -70,55 +72,111 @@ class Solution {
         return false;
     }
 }
-````
+```
 
 ---
 
 ## Logic Breakdown
 
-**Step 1: Prefix Sum + Modulo**
-We maintain a running sum as we iterate through the array.
-Instead of storing the sum directly, we store `sum % k` (the remainder).
+**Step 1 — Running Prefix Sum**
+We keep a cumulative sum as we go through `nums`.
 
-**Step 2: Remainder Map**
-The map stores:
-`remainder → first index where this remainder occurred`
+**Step 2 — Modulo Trick**
+We only care about `sum % k` (the remainder).
+Why? Because if two prefix sums have the same remainder, the sum of numbers between them is divisible by `k`.
 
-If the same remainder appears again at a later index, the sum of the elements between those two indices is divisible by `k`.
+**Step 3 — Map Storage**
+We store each remainder with the **first index** where it occurred.
+If the remainder is seen again at index `i` and the gap `i - previousIndex ≥ 2`,
+then the subarray between them is valid.
 
 ---
 
-### Why This Works
+## Dry Run Example
 
-Let `sum(i)` be the prefix sum up to index `i`.
-If:
-
-```
-sum(i) % k == sum(j) % k
-```
-
-then:
+**Input**
 
 ```
-(sum(i) - sum(j)) % k == 0
-```
-
-Which means the subarray from `(j+1)` to `i` has a sum divisible by `k`.
-
-We also ensure the subarray length is at least **2** by checking:
-
-```
-i - j >= 2
+nums = [23, 2, 4, 6, 7]
+k = 6
 ```
 
 ---
 
-### Time & Space Complexity
+**Initial State**
 
-* **Time**: `O(N)` — Single pass through the array.
-* **Space**: `O(min(N, k))` — Map stores remainders.
+```
+sum = 0
+map = { 0 : -1 }  // remainder 0 seen at index -1 (before array starts)
+```
 
 ---
 
-**One-Line Summary**
-Track prefix sum remainders and their first occurrence; if a remainder repeats with gap ≥ 2, we found a valid subarray.
+### i = 0 → nums\[0] = 23
+
+```
+sum = 0 + 23 = 23
+remainder = 23 % 6 = 5
+map does NOT contain 5 → store {5: 0}
+map = { 0: -1, 5: 0 }
+```
+
+---
+
+### i = 1 → nums\[1] = 2
+
+```
+sum = 23 + 2 = 25
+remainder = 25 % 6 = 1
+map does NOT contain 1 → store {1: 1}
+map = { 0: -1, 5: 0, 1: 1 }
+```
+
+---
+
+### i = 2 → nums\[2] = 4
+
+```
+sum = 25 + 4 = 29
+remainder = 29 % 6 = 5
+map CONTAINS 5 → previousIndex = 0
+gap = 2 - 0 = 2 → VALID (length ≥ 2)
+Return true
+```
+
+✅ This subarray is from index 1 to 2 → `[2, 4]` with sum 6, divisible by 6.
+
+---
+
+## Why This Works
+
+Mathematically:
+If
+
+```
+prefixSum(i) % k == prefixSum(j) % k
+```
+
+then
+
+```
+(prefixSum(i) - prefixSum(j)) % k == 0
+```
+
+meaning the subarray from `(j+1)` to `i` is divisible by `k`.
+
+We also check the **length condition** `i - j ≥ 2` to satisfy the problem’s requirement.
+
+---
+
+## Time & Space Complexity
+
+* **Time Complexity**: `O(N)` — one pass through array.
+* **Space Complexity**: `O(min(N, k))` — map stores remainders.
+
+---
+
+**One-Line Summary:**
+Keep track of remainders of prefix sums. If the same remainder appears again with gap ≥ 2, you found a subarray whose sum is divisible by `k`.
+
+---

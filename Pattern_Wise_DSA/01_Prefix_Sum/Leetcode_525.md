@@ -1,35 +1,37 @@
 
-#  LeetCode 525 - [Contiguous Array](https://leetcode.com/problems/contiguous-array/)
+
+# LeetCode 525 - [Contiguous Array](https://leetcode.com/problems/contiguous-array/)
 
 ---
 
-##  Problem Statement (In Short)
+## Problem Statement (In Short)
 
 Given a binary array `nums`, find the **maximum length** of a contiguous subarray with **equal number of 0 and 1**.
 
 ---
 
-##  Brute Force Approach
+## Brute Force Approach
 
-**Idea**:  
-Check **all possible subarrays**, and for each one, count number of 0s and 1s. If they're equal, update max length.
+**Idea**
+Check all possible subarrays, and for each one, count number of 0s and 1s. If they're equal, update max length.
 
-**Steps**:
-- Run two loops to generate all subarrays
-- For each subarray, count how many 0s and 1s it contains
-- If `count0 == count1`, then update maxLength
+**Steps**
 
-**Time Complexity**: `O(N^2)`  
+* Run two loops to generate all subarrays
+* For each subarray, count how many 0s and 1s it contains
+* If `count0 == count1`, update maxLength
+
+**Time Complexity**: `O(N^2)`
 **Space Complexity**: `O(1)`
 
-**Why it sucks**:  
-It works, but its painfully slow for large arrays. Nested loops make it quadratic.
+**Drawback**
+Nested loops kill performance for big arrays.
 
 ---
 
-##  Optimal Approach (Prefix Sum + HashMap)
+## Optimal Approach (Prefix Sum + HashMap)
 
-###  Code:
+### Java Code
 
 ```java
 class Solution {
@@ -38,9 +40,10 @@ class Solution {
         if (nums == null || nums.length == 0)
             return 0;
 
+        // Step 1: Convert all 0s to -1
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] == 0) {
-                nums[i] = -1;  // convert problem to prefix sum with 0  -1
+                nums[i] = -1;
             }
         }
 
@@ -48,8 +51,9 @@ class Solution {
         int max = 0;
 
         Map<Integer, Integer> map = new HashMap<>();
-        map.put(0, -1);  // base case
+        map.put(0, -1); // Base case: sum 0 at index -1
 
+        // Step 2: Traverse and track prefix sums
         for (int i = 0; i < nums.length; i++) {
             sum += nums[i];
 
@@ -57,7 +61,7 @@ class Solution {
                 int prevIndex = map.get(sum);
                 max = Math.max(max, i - prevIndex);
             } else {
-                map.put(sum, i); 
+                map.put(sum, i);
             }
         }
 
@@ -68,52 +72,76 @@ class Solution {
 
 ---
 
-##  Logic Breakdown
+## Logic Breakdown
 
-###  Step 1: Convert the problem
-- Replace every `0` with `-1`
-- Why? Because now, the problem becomes:  
-  **Find the longest subarray with sum = 0**  
-  (equal number of 1s and -1s = equal number of 0s and 1s)
+**Step 1: Convert the problem**
 
-###  Step 2: Use prefix sum + HashMap
-- We keep a running `sum` as we iterate
-- We also maintain a `map<sum, firstIndexWhereSumOccurred>`
+* Change every `0` to `-1`
+* Now, the problem becomes: **find the longest subarray with sum = 0**
 
-###  Why this works:
-- If at two indices `i` and `j`, the prefix sum is same, then subarray from `i+1 to j` has **sum = 0**
-- So we just track first occurrence of each prefix sum
-- Every time we re-encounter the same sum, we check length between current index and first index
+**Step 2: Prefix Sum + First Occurrence Map**
 
-###  Example:
-Original: `[0, 1, 0]`  
-Converted: `[-1, 1, -1]`
+* Maintain a running `sum`
+* Store the **first index** where each sum occurs in a HashMap
 
-Prefix Sums:  
-- Index 0  -1  
-- Index 1  0  sum 0 occurred before at index `-1`, so subarray `(0 to 1)`  
-- Index 2  -1 again  map already had -1 at index 0  subarray `(1 to 2)`  
-
-Max length = 2
+**Why it works**
+If prefix sum is same at two indices `i` and `j`, then the subarray `(i+1...j)` has sum 0 — meaning equal number of 1s and -1s (originally equal 1s and 0s).
 
 ---
 
-##  Time & Space Complexity
+## Dry Run Example
 
-- **Time**: `O(N)`  single pass through array
-- **Space**: `O(N)`  HashMap to store prefix sum indexes
+Input:
+
+```
+nums = [0, 1, 0]
+```
+
+**Step 1: Convert 0 → -1**
+
+```
+nums = [-1, 1, -1]
+```
+
+**Step 2: Initialize**
+
+```
+sum = 0
+max = 0
+map = {0: -1}   // sum 0 first seen before start
+```
+
+**Step 3: Iterate**
+
+* **i = 0**
+  sum = 0 + (-1) = -1
+  map doesn't have -1 → store `-1: 0`
+  map = {0: -1, -1: 0}
+
+* **i = 1**
+  sum = -1 + 1 = 0
+  map has 0 at index -1
+  length = 1 - (-1) = 2 → max = 2
+
+* **i = 2**
+  sum = 0 + (-1) = -1
+  map has -1 at index 0
+  length = 2 - 0 = 2 → max still = 2
+
+**Result:**
+max = 2
 
 ---
 
-##  When to Use This Pattern
+## Time & Space Complexity
 
-This is a classic **"Prefix Sum + HashMap to track first occurrence"** pattern.  
-Use it when:
-- You need to find longest subarray with a target sum (esp. zero)
-- Or when you're converting a binary condition to numeric form (like turning 0-1)
+* **Time:** `O(N)` — Single pass
+* **Space:** `O(N)` — Map stores first index of each sum
 
 ---
 
-##  One-Liner Summary
+## One-Line Summary
 
-Turn 0s into -1s and reduce the problem to finding the **longest subarray with sum = 0** using prefix sum and a hashmap.
+Turn `0`s into `-1`s, then find the longest subarray with sum 0 using prefix sums and a map of first occurrences.
+
+---
