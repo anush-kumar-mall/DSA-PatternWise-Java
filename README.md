@@ -43,6 +43,7 @@ Inside every folder, problems are categorized **pattern-wise** (e.g., Sliding Wi
 
 - [Prefix Sum](Pattern_Wise_DSA/01_Prefix_Sum)  
 - [Two Pointers](Pattern_Wise_DSA/02_Two_Pointers)  
+- [Sliding Window](Pattern_Wise_DSA/03_Sliding_Window)  
 
 > More topics and pattern-based solutions coming soon — stay tuned!
 
