@@ -1,44 +1,52 @@
 
-# LeetCode 215 – [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
+LeetCode 215 – Kth Largest Element in an Array
+
 
 ---
 
-## Problem Statement (In Short)
+Problem Statement (In Short)
 
-Given an integer array `nums` and an integer `k`, return the **kth largest element** in the array.
-👉 Dhyan rahe, ye **kth largest by position** hai, distinct elements ka scene nahi hai.
+Given an integer array nums and an integer k, return the kth largest element in the array.
+👉 Note: This is the kth largest by position, not distinct elements.
 
----
-
-## Example
-
-**Input:**
-`nums = [3,2,3,1,2,4,5,5,6], k = 4`
-
-**Process:**
-Sorted = `[1,2,2,3,3,4,5,5,6]`
-4th largest = `4`
-
-**Output:**
-`4`
 
 ---
 
-# Approach 1: Sorting (Simple and Direct)
+Example
 
-### Idea
+Input:
+nums = [3,2,3,1,2,4,5,5,6], k = 4
 
-* Array ko sort kar do ascending order me.
-* Kth largest element ka index hoga `(n-k)`.
+Process:
+Sorted = [1,2,2,3,3,4,5,5,6]
+4th largest = 4
 
-### Steps
+Output:
+4
 
-1. Sort array.
-2. Return `nums[nums.length - k]`.
 
-### Java Code
+---
 
-```java
+Approach 1: Sorting (Simple and Direct)
+
+Idea
+
+Sort the array in ascending order.
+
+The kth largest element will be at index (n-k).
+
+
+Steps
+
+1. Sort the array.
+
+
+2. Return nums[nums.length - k].
+
+
+
+Java Code
+
 import java.util.Arrays;
 
 class Solution {
@@ -50,34 +58,47 @@ class Solution {
         return nums[nums.length - k];
     }
 }
-```
 
-### Complexity
+Complexity
 
-* **Time:** `O(N log N)` (sorting)
-* **Space:** `O(1)` (in-place sort)
+Time: O(N log N) (sorting)
+
+Space: O(1) (in-place sort)
+
+
 
 ---
 
-# Approach 2: Min-Heap (Efficient for Large N)
+Approach 2: Min-Heap (Efficient for Large N)
 
-### Idea
+Idea
 
-* Maintain a **min-heap of size k**.
-* Traverse array, add each element to heap.
-* Agar heap size `k` se bada ho jaye → smallest element hata do.
-* End me heap ka top = kth largest.
+Maintain a min-heap of size k.
 
-### Steps
+Traverse the array and insert each element into the heap.
 
-1. Ek min-heap banao.
-2. Har element insert karo.
-3. Agar size > k, remove min.
+If heap size > k → remove the smallest element.
+
+At the end, the heap’s top = kth largest element.
+
+
+Steps
+
+1. Create a min-heap.
+
+
+2. Insert each element.
+
+
+3. If size > k, remove the min.
+
+
 4. Return heap.peek().
 
-### Java Code
 
-```java
+
+Java Code
+
 import java.util.PriorityQueue;
 
 class Solution {
@@ -88,46 +109,59 @@ class Solution {
         for (int i = 0; i < nums.length; i++) {
             minHeap.add(nums[i]);
 
-            // Heap size k se bada ho gaya toh chhota element hatao
+            // Keep only k elements
             if (minHeap.size() > k) {
                 minHeap.poll();
             }
         }
 
-        // Heap ka top hi kth largest hai
+        // Top of heap is kth largest
         return minHeap.peek();
     }
 }
-```
 
-### Complexity
+Complexity
 
-* **Time:** `O(N log K)` (heap operations)
-* **Space:** `O(K)` (heap size)
+Time: O(N log K) (heap operations)
 
----
+Space: O(K) (heap size)
 
-# Dry Run (Min-Heap)
 
-**Input:**
-`nums = [3,2,1,5,6,4], k = 2`
-
-**Steps:**
-
-* Add 3 → heap = \[3]
-* Add 2 → heap = \[2,3]
-* Add 1 → heap = \[1,3,2] → size > 2 → remove 1 → heap = \[2,3]
-* Add 5 → heap = \[2,3,5] → remove 2 → heap = \[3,5]
-* Add 6 → heap = \[3,5,6] → remove 3 → heap = \[5,6]
-* Add 4 → heap = \[4,6,5] → remove 4 → heap = \[5,6]
-
-Result → `5` ✅
 
 ---
 
-# One-Line Summary
+Dry Run (Min-Heap)
 
-* **Sorting** → easy but slower for large input (`O(N log N)`).
-* **Min-Heap** → faster for large `N`, better when `k` is small (`O(N log K)`).
+Input:
+nums = [3,2,1,5,6,4], k = 2
+
+Steps:
+
+Add 3 → heap = [3]
+
+Add 2 → heap = [2,3]
+
+Add 1 → heap = [1,3,2] → size > 2 → remove 1 → heap = [2,3]
+
+Add 5 → heap = [2,3,5] → remove 2 → heap = [3,5]
+
+Add 6 → heap = [3,5,6] → remove 3 → heap = [5,6]
+
+Add 4 → heap = [4,6,5] → remove 4 → heap = [5,6]
+
+
+Result → 5 ✅
+
 
 ---
+
+One-Line Summary
+
+Sorting → simple but slower (O(N log N)).
+
+Min-Heap → more efficient when k is small compared to n (O(N log K)).
+
+
+
+---
+
