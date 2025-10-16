@@ -1,55 +1,60 @@
 
-### 🔍 Problem Summary
 
-You’re given a string `s` containing only digits (like `"25525511135"`).
-You need to **return all possible valid IP addresses** that can be formed by inserting **3 dots** in the string.
-
-Each IP address must have **exactly 4 numbers (segments)** separated by dots, and:
-
-* Each segment must be between `0` and `255`.
-* No leading zeros allowed (like `"01"` or `"00"` are invalid).
+# LeetCode 93 – [Restore IP Addresses](https://leetcode.com/problems/restore-ip-addresses/)
 
 ---
 
-### 💡 Key Idea
+## Problem Statement (In Short)
 
-We’ll use **Backtracking**:
+Given a string `s` containing only digits, return **all possible valid IP addresses** that can be formed by inserting **3 dots** in the string.
 
-* We try to build IP address piece by piece (segment by segment).
-* At each recursive step, we pick **1, 2, or 3 digits** (since a valid segment can’t be longer than 3 digits).
-* Validate the chosen segment before recursing.
-* Once we have 4 valid segments **and** we’ve used all digits — we add that to result.
+Rules for a valid IP segment:
 
----
+1. Each segment is between `0` and `255`.
+2. No leading zeros allowed (so `"01"` or `"00"` is invalid, `"0"` is valid).
+3. Exactly 4 segments in the IP address.
 
-### 🧠 Example Walkthrough
+**Example:**
 
-`s = "25525511135"`
-
-We start at index 0 and choose:
-
-* `"2"` (valid), recurse → choose next segment
-* `"25"` (valid), recurse → choose next segment
-* `"255"` (valid), recurse → choose next segment
-
-Keep going till we form 4 parts like `["255", "255", "11", "135"]`.
-
-When we reach 4 parts **and** string is fully used → join with dots → `"255.255.11.135"`
-Else backtrack and try other segment splits.
+```
+Input: "25525511135"
+Output: ["255.255.11.135", "255.255.111.35"]
+```
 
 ---
 
-### ⚙️ Step-by-Step Conditions
+## Brute Force Approach
 
-For a segment `part` to be valid:
+**Idea**
+Generate all possible ways to place 3 dots (splitting into 4 segments), then check if each segment is valid.
 
-1. `part.length() <= 3`
-2. If it starts with `'0'`, it must be only `"0"`
-3. Integer value of `part` must be ≤ 255
+**Steps**
+
+1. Try every combination of 3 split positions.
+2. For each split, check if all 4 segments are valid.
+3. If valid, join with dots and add to result.
+
+**Time Complexity:** O(n³) (trying all split combinations)
+**Space Complexity:** O(n) recursion + O(result)
+
+**Drawback**
+Inefficient — generates invalid splits unnecessarily.
 
 ---
 
-### ✅ Final Java Code (With Comments)
+## Optimal Approach (Backtracking)
+
+**Idea**
+Build the IP address **segment by segment** using backtracking:
+
+* Try to form each segment by taking 1, 2, or 3 digits (as long as it stays within bounds).
+* Before recursing, check if the segment is valid (0–255, no leading zero).
+* Once 4 segments are formed **and** the string is fully used → add to result.
+* Backtrack to try other possibilities.
+
+---
+
+### Java Code
 
 ```java
 import java.util.ArrayList;
@@ -62,38 +67,31 @@ class Solution {
         return result;
     }
 
-    // backtracking function
     private void backtrack(String s, int start, List<String> current, List<String> result) {
-        // base case: if 4 segments formed
+        // Base case: if 4 segments formed
         if (current.size() == 4) {
-            // if all characters are used, it's a valid IP
-            if (start == s.length()) {
+            if (start == s.length()) {  // all digits used
                 result.add(String.join(".", current));
             }
             return;
         }
 
-        // try taking 1 to 3 digits as next segment
+        // Try segments of length 1 to 3
         for (int len = 1; len <= 3; len++) {
-            // if segment goes beyond string length → stop
-            if (start + len > s.length()) break;
+            if (start + len > s.length()) break;  // segment goes beyond string
 
             String part = s.substring(start, start + len);
-
-            // check validity
             if (isValid(part)) {
-                current.add(part);
-                backtrack(s, start + len, current, result);
-                current.remove(current.size() - 1); // backtrack
+                current.add(part);  // choose
+                backtrack(s, start + len, current, result);  // recurse
+                current.remove(current.size() - 1);  // backtrack
             }
         }
     }
 
-    // check if segment is valid
+    // Check if segment is valid
     private boolean isValid(String part) {
-        // no leading zero unless single zero
-        if (part.length() > 1 && part.charAt(0) == '0') return false;
-        // numeric range check
+        if (part.length() > 1 && part.charAt(0) == '0') return false;  // no leading zero
         int num = Integer.parseInt(part);
         return num >= 0 && num <= 255;
     }
@@ -102,9 +100,67 @@ class Solution {
 
 ---
 
-### 🧩 Time Complexity
+## Logic Breakdown
 
-Roughly `O(3^4)` in the worst case, since we can try 1–3 digits for each of 4 parts — but heavily pruned by validation.
-So it’s efficient enough for typical input (length ≤ 12).
+**Step 1: Base Case**
+If 4 segments are formed:
+
+* If all digits are used → join segments with dots → add to result
+* Else → discard this path
+
+**Step 2: Try 1–3 digit segments**
+Pick substring `s[start..start+len-1]`
+
+* Check if valid
+* If yes → add to current → recurse → backtrack
+
+**Step 3: Segment Validation**
+
+* No leading zeros unless it is `"0"`
+* Numeric value ≤ 255
+
+---
+
+## Dry Run Example
+
+**Input:**
+
+```
+s = "25525511135"
+```
+
+**Process:**
+
+| current segments         | start | segment chosen | Action / Result Added |
+| ------------------------ | ----- | -------------- | --------------------- |
+| []                       | 0     | "2"            | recurse               |
+| ["2"]                    | 1     | "5"            | recurse               |
+| ["2","5"]                | 2     | "5"            | recurse               |
+| ["2","5","5"]            | 3     | "2"            | recurse               |
+| ...                      | ...   | ...            | continue building     |
+| ["255","255","11","135"] | 9     | -              | Base → add to result  |
+| ["255","255","111","35"] | 9     | -              | Base → add to result  |
+
+**Final Result:**
+
+```
+["255.255.11.135", "255.255.111.35"]
+```
+
+---
+
+## Time & Space Complexity
+
+* **Time:** O(3⁴) = O(81)
+
+  * Each of 4 segments can have 1–3 digits → 3⁴ combinations
+  * Valid segments prune invalid paths early
+* **Space:** O(4) recursion stack + O(result)
+
+---
+
+## One-Line Summary
+
+Use backtracking to build IP **segment by segment**, validating each segment, and backtracking to explore all possibilities.
 
 ---
