@@ -43,7 +43,15 @@ Inside every folder, problems are categorized **pattern-wise** (e.g., Sliding Wi
 
 - [Prefix Sum](Pattern_Wise_DSA/01_Prefix_Sum)  
 - [Two Pointers](Pattern_Wise_DSA/02_Two_Pointers)  
-- [Sliding Window](Pattern_Wise_DSA/03_Sliding_Window)  
+- [Sliding Window](Pattern_Wise_DSA/03_Sliding_Window)
+- [Fast & Slow Pointers](Pattern_Wise_DSA/04_Fast_&_Slow_Pointers)  
+- [Monotonic Stack](Pattern_Wise_DSA/05_Monotonic_Stack)  
+- [Top K Elements](Pattern_Wise_DSA/06_Top_K_Elements)  
+- [Depth First Search](Pattern_Wise_DSA/07_Depth_First_Search)
+- [Breadth First Search](Pattern_Wise_DSA/08_Breadth_First_Search)  
+- [BackTracking](Pattern_Wise_DSA/09_BackTracking)  
+
+
 
 > More topics and pattern-based solutions coming soon — stay tuned!
 
